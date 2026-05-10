@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-argo
+  namespace: nginx-argo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-argo
+
+  template:
+    metadata:
+      labels:
+        app: nginx-argo
+
+    spec:
+      containers:
+      - name: nginx-argo
+        image: nginx:stable
+        ports:
+        - containerPort: 80
