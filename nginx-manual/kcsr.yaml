@@ -1,0 +1,10 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: nginxadm
+spec:
+  request: truncated 
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 864000  
+  usages:
+  - client auth

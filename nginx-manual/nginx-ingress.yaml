@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+  name: nginxingress
+  namespace: nginx-manual
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: nginxtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - nginxtest.com
+    secretName: nginx-cert
