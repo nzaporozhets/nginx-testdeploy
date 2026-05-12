@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+spec:
+  destination:
+    namespace: nginx-argo
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: nginx-argo
+    repoURL: https://github.com/nzaporozhets/nginx-testdeploy.git
+    targetRevision: HEAD

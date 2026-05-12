@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+  name: nginxingress
+  namespace: nginx-argo
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: argonginxtest.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: nginx-service-argo
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - argonginxtest.com
+    secretName: nginx-cert-argo
