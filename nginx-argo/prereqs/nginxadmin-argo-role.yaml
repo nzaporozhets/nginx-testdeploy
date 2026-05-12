@@ -1,0 +1,19 @@
+#nginxadmin-argo-role.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: nginx-argo
+  name: nginxadmin-argo-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps","secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+- apiGroups: ["apps"]
+  resources: ["deployments","statefulsets","daemonsets","replicasets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+
+- apiGroups: ["argoproj.io"]
+  resources: ["applications"]
+  verbs: ["*"]

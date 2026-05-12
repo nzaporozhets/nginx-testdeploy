@@ -1,0 +1,10 @@
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: nginxadm-argo
+spec:
+  request: truncated
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 864000 #set to desired length, ~10 days in this example
+  usages:
+  - client auth
